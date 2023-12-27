@@ -30,6 +30,8 @@ def make_annot_files(args, beds_for_annot, names_for_annot):
         df_annot = pd.merge(df_annot, df_int, how='left', on='BP')
         df_annot.fillna(0, inplace=True)
         df_annot[[name_for_annot]] = df_annot[[name_for_annot]].astype(int)
+    
+    df_annot["ALL"] = 1
 
     if args.annot_file.endswith('.gz'):
         with gzip.open(args.annot_file, 'wb') as f:
